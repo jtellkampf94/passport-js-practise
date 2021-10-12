@@ -1,5 +1,5 @@
 const passport = require("passport");
-const LocalStrategy = require();
+const LocalStrategy = require("passport-local");
 
 const connection = require("./database");
 const User = connection.models.User;
@@ -30,3 +30,17 @@ const verifyCallback = (username, password, done) => {
 const strategy = new LocalStrategy(customFields, verifyCallback);
 
 passport.use(strategy);
+
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser((userId, done) => {
+  User.findById(userId)
+    .then((user) => {
+      done(null, user);
+    })
+    .catch((err) => {
+      done(err);
+    });
+});
