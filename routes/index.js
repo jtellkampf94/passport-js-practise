@@ -5,7 +5,7 @@ const connection = require("../config/database");
 
 const User = connection.models.User;
 
-router.post("/login", (req, res, next) => {});
+router.post("/login", passport.authenticate("local"), (req, res, next) => {});
 
 router.post("/register", (req, res, next) => {});
 

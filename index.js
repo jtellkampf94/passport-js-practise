@@ -28,6 +28,8 @@ app.use(
   })
 );
 
+require("./config/passport");
+
 app.use(routes);
 
 app.listen(3000, () => {
