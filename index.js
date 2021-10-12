@@ -5,6 +5,7 @@ const passport = require("passport");
 const crypto = require("crypto");
 
 const connection = require("./config/database");
+const routes = require("./routes");
 
 const MongoStore = require("connect-mongo");
 
@@ -26,6 +27,8 @@ app.use(
     },
   })
 );
+
+app.use(routes);
 
 app.listen(3000, () => {
   console.log("Server listening on port 3000.");
